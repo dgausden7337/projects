@@ -1,12 +1,16 @@
 import picamera,time as t
+#imports the modulez needed
 
-
+#defines getPicture function
 def getPicture(name):
     Check = False
+    #creates variable
+    #checks you have name
     if len(name) <= 0:
         print("no name given")
         t.sleep(.3)
         getPicture(input("what is your name?"))
+        #runs function with name
     else:
         try:
             while Check == False:
@@ -17,16 +21,20 @@ def getPicture(name):
                     filename = ("{0}.jpeg".format(name))
                     camera.capture(filename)
                     camera.stop_preview()
-                    
+                    #tries to take picture
                     Check = input("are you happy with this picture? Y/N").lower()
                     if Check == "y" or Check == "yes":
                         Check = True
                     else:
                         Check = False
+                        #check if they are happy with picture
         except picamera.exc.PiCameraError:
             print("camera disconnected, check connection reboot pi and try again")
             filename = ""
+            #if no camera run this
         return filename
+    #return what the file is called
+#defines getCharProf function
 def getCharProf():
     fname = ""
     lname = ""
@@ -46,39 +54,38 @@ def getCharProf():
     GenderList = ["male","female"]
     hairColList = ["blue","black","brown","blonde","red"]
     eyeColList = ["blue","brown","hazel","green"]
-
+#creates variables and lists needed
 
     while fname == "" or lname == "" or Check0 == False:
-        fname = input("What is your first name?")
-        lname = input("What is your last name?")
+        fname = input("What is your first name?")#asks for first name
+        lname = input("What is your last name?")#asks for last nane
         Check0 = input("is {0} {1} your name?Y/N".format(fname,lname)).lower()
         if Check0 == "y" or Check0 == "yes":
             Check0 = True
-
+#ensures they are correct
     fullname = ("{0} {1}".format(fname,lname))
-    getPicture(fullname)
+    getPicture(fullname)#cretes their fullname and runs getPicture function with it
 
 
-    while not (hairCol in hairColList) or Check1 == True:
-        hairCol = input("what is {0}'s hair colour? Choose from {1}".format(fullname,hairColList)).lower()
-        Check1 = input("are you sure?").lower
+    while not (hairCol in hairColList) or Check1 == True:#if the haircol is not in list or they are not happy run this
+        hairCol = input("what is {0}'s hair colour? Choose from {1}".format(fullname,hairColList)).lower()#asks for their hair colour
+        Check1 = input("are you sure?").lower#checks if they are sure
         if Check1 == "yes" or "y":
             Check = True
-        else:
-            Check1 = False
+     
 
 
-    while not (eyeCol in eyeColList) or Check2 == True:
-        eyeCol = input("What is {0}'s eye colour? Choose from {1}".format(fullname,eyeColList)).lower()
-        Check2 = input("Are you sure?").lower()
+    while not (eyeCol in eyeColList) or Check2 == True:#if the eyeCol is not in list or they are not happy run this
+        eyeCol = input("What is {0}'s eye colour? Choose from {1}".format(fullname,eyeColList)).lower()#asks for eye Col
+        Check2 = input("Are you sure?").lower()#asks if they are happy
         if Check2 == "y" or "yes":
             Check2 = True
      
           
 
             
-    while not (Gender in GenderList) or Check3 == True:
-        Gender = input("what Gender is {0}? {1}".format(fullname,GenderList)).lower()
+    while not (Gender in GenderList) or Check3 == True:#if gender is not in list or they not happy run again
+        Gender = input("what Gender is {0}? {1}".format(fullname,GenderList)).lower()#
         Check3 = input("are you sure {0} is {1}?".format(fullname,Gender)).lower()
         if Check3 == "y" or "yes":
             Check3 = True
