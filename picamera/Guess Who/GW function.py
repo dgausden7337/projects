@@ -67,40 +67,43 @@ def getCharProf():
     getPicture(fullname)#cretes their fullname and runs getPicture function with it
 
 
-    while not (hairCol in hairColList) or Check1 == True:#if the haircol is not in list or they are not happy run this
-        hairCol = input("what is {0}'s hair colour? Choose from {1}".format(fullname,hairColList)).lower()#asks for their hair colour
-        Check1 = input("are you sure?").lower#checks if they are sure
-        if Check1 == "yes" or "y":
-            Check = True
+    while not (hairCol in hairColList):#if the haircol is not in list or they are not happy run this
+        while Check1 == False:
+            hairCol = input("what is {0}'s hair colour? Choose from {1}".format(fullname,hairColList)).lower()#asks for their hair colour
+            Check1 = input("are you sure?").lower()#checks if they are sure
+            if Check1 == "yes" or "y":
+                Check1 = True
      
 
 
-    while not (eyeCol in eyeColList) or Check2 == True:#if the eyeCol is not in list or they are not happy run this
+    while not (eyeCol in eyeColList) or Check2 == False:#if the eyeCol is not in list or they are not happy run this
         eyeCol = input("What is {0}'s eye colour? Choose from {1}".format(fullname,eyeColList)).lower()#asks for eye Col
-        Check2 = input("Are you sure?").lower()#asks if they are happy
+        Check2 = input("Are you sure?Y/N").lower()#asks if they are happy
         if Check2 == "y" or "yes":
             Check2 = True
      
           
 
             
-    while not (Gender in GenderList) or Check3 == True:#if gender is not in list or they not happy run again
+    while not (Gender in GenderList) or Check3 == False:#if gender is not in list or they not happy run again
         Gender = input("what Gender is {0}? {1}".format(fullname,GenderList)).lower()#
         Check3 = input("are you sure {0} is {1}?".format(fullname,Gender)).lower()
         if Check3 == "y" or "yes":
             Check3 = True
 
-    while not Glasses == True or Glasses == False or Check4 == True:
+    while not Glasses == True or not Glasses == False or Check4 == False:
         Glasses = input("does {0} wear glasses? y/n".format(fullname)).lower
         if Glasses =="y" or "yes":
             Glasses = True
         elif Glasses == "n" or "no":
             Glasses = False
+        else:
+            Glasses = ""
         Check4 = input("are you sure?Y/N").lower()
         if Check4 == "y" or Check4 == "yes":
             Check4 = True
 
-    while not FacialHair == True or FacialHair == False or Check5 == True:
+    while not FacialHair == True or not FacialHair == False or Check5 == False:
         FacialHair = input("does{0} have any facial hair?".format(fullname)).lower()
         if FacialHair == "y" or "yes":
             FacialHair = True
@@ -111,7 +114,7 @@ def getCharProf():
             Check5 = True
 
 
-    while not Hat == True or Hat == False or Check6 == True:
+    while not Hat == True or not Hat == False or Check6 == False:
         Hat = input("does {0} wear a hat?".format(fullname)).lower
         if Hat == "y" or "yes":
             Hat = True
@@ -124,7 +127,5 @@ def getCharProf():
     profileList = [fullname,eyeCol,hairCol,Gender,Glasses,FacialHair]
     return profileList
 
-        
-        
-        
-    
+def loadProfiles():
+    with open("profiles.txt","
