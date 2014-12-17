@@ -45,8 +45,8 @@ def getCharProf():
     FacialHair = ""
     Glasses = ""
     Check0 = False
-    GenderList = ["male","female"]
-    hairColList = ["blue","black","brown","blonde","red"]
+    GenderList = ["male","female","other"]
+    hairColList = ["blue","black","brown","blonde","red","grey"]
     eyeColList = ["blue","brown","hazel","green"]
 #creates variables and lists needed
 
@@ -82,12 +82,12 @@ def getCharProf():
     
     while not (Gender in GenderList) or Check0 == False:#if gender is not in list or they not happy run again
         Gender = input("what Gender is {0}? {1}".format(fullname,GenderList)).lower()#
-        Check0 = input("are you sure {0} is {1}?".format(fullname,Gender)).lower()
+        Check0 = input("are you sure {0} is {1}?Y/N".format(fullname,Gender)).lower()
         if Check0 == "y" or "yes":
             Check0 = True
     Check0 = False
     while not Glasses == True or False or Check0 == False:
-        Glasses = input("does {0} wear glasses? y/n".format(fullname)).lower
+        Glasses = input("does {0} wear glasses? Y/N".format(fullname)).lower
         if Glasses =="y" or "yes":
             Glasses = True
         elif Glasses == "n" or "no":
@@ -99,23 +99,23 @@ def getCharProf():
             Check0 = True
     Check0 = False
     while not FacialHair == True or False or Check0 == False:
-        FacialHair = input("does{0} have any facial hair?".format(fullname)).lower()
+        FacialHair = input("does{0} have any facial hair?Y/N".format(fullname)).lower()
         if FacialHair == "y" or "yes":
             FacialHair = True
         elif FacialHair == "n" or "no":
             FacialHair = False
-        Check0 = input("are you sure?").lower
+        Check0 = input("are you sure?Y/N").lower
         if Check0 == "y" or "yes":
             Check0 = True
     Check0 = False
 
     while not Hat == True or False or Check0 == False:
-        Hat = input("does {0} wear a hat?".format(fullname)).lower
+        Hat = input("does {0} wear a hat?Y/N".format(fullname)).lower
         if Hat == "y" or "yes":
             Hat = True
         elif Hat == "n" or "no":
             Hat = False
-        Check0 = input("are you sure?").lower
+        Check0 = input("are you sure?Y/N").lower
         if Check0 == "y" or "yes":
             Check0 = True
             
@@ -131,11 +131,10 @@ def loadProfiles():
         print("profiles.txt not found. Creating new profile")
         
         profiles = []
-        
-        saveProfile()
+    return profiles
 def saveProfile(profiles):
     profile = getCharProf()
     profiles.append(profile)
     with open("profiles.txt",mode="w",encoding="utf-8") as p:
         json.dump(profiles,p)
-    
+
