@@ -1,0 +1,22 @@
+import RPi.GPIO as GPIO
+import time
+
+
+pin = 4
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pin,GPIO.IN,GPIO.PUD_UP)
+buttoncount = 0
+while True:
+    pin_value = GPIO.input(pin)
+    if pin_value:
+        print("HIGH")
+        
+    else:
+        buttoncount = buttoncount+1
+        
+        print(buttoncount)
+        print("LOW")
+    time.sleep(.1)
+ 
+    
